@@ -24,7 +24,6 @@ const handleDragOver = (event) => {
             break;
         }
     }
-
     if (!column) return
     updateDragging({ over: column })
     updateDraggingHtml({ over: column })
