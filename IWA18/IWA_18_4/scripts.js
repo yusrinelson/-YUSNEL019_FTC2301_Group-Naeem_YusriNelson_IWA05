@@ -1,4 +1,4 @@
-import {TABLES, COLUMNS, state, createOrderData, updateDragging} from './data.js'
+import { TABLES, COLUMNS, state, createOrderData, updateDragging } from './data.js'
 import { createOrderHtml, html, updateDraggingHtml, moveToColumn } from './view.js'
 
 /**
@@ -30,12 +30,15 @@ const handleDragOver = (event) => {
 }
 
 
-const handleDragStart = (event) => {}
+const handleDragStart = (event) => { }
 
 
-const handleDragEnd = (event) => {}
+const handleDragEnd = (event) => { }
 
-
+/**
+ * opens the "?" button and closes it when clicked on the "close" button
+ * 
+ */
 const handleHelpToggle = (event) => {
     const { target } = event;
     if (target == html.other.help) {
@@ -46,20 +49,26 @@ const handleHelpToggle = (event) => {
     }
 }
 
-
+/**
+ * when clicked on "Add Order" opens it.
+ * closes it when clicked on "cancel"
+ */
 const handleAddToggle = (event) => {
-    const {target} = event
+    const { target } = event
     if (target == html.other.add) {
         html.add.overlay.showModal()
     }
-    if(target == html.add.cancel){
+    if (target == html.add.cancel) {
         html.add.overlay.close()
     }
 }
 
-
+/**
+ * when user submits order, collects the info typed in and pushes it to the ordered column
+ * 
+ */
 const handleAddSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault();                           //used so that information stays after a form is submitted
     const data = {
         title: html.add.title.value,
         table: html.add.table.value,
@@ -75,38 +84,27 @@ const handleAddSubmit = (event) => {
 }
 
 
-
+/**
+ * 
+ * alows you to click in data extracted and re edit it to be updated in the eirther column 
+ */
 const handleEditToggle = (event) => {
-    const {target} = event
+    const { target } = event
     const opened = document.querySelector(".order")
-    if (target == opened){
+    if (target == opened) {
         html.edit.overlay.showModal()
     }
-    if(target == html.edit.cancel){
+    if (target == html.edit.cancel) {
         html.edit.overlay.close()
     }
 }
 
 
 const handleEditSubmit = (event) => {
-    event.preventDefault()
-    order.remove()
-    const order = document.querySelector(".order")
-    const data = {
-        title: html.edit.title.value,
-        table: html.edit.table.value,
-        column: html.edit.column.value
-    }
-    const yourOrder = createOrderData(data)
-    const content = createOrderHtml(yourOrder)
-    const column = document.querySelector(`[data-area="${data.column}]`);
-    const orderedDiv = column.querySelector(`[data-column=${data.column}]`);
-    orderedDiv.appendChild(content)
-    handleAddToggle();
 }
 
 
-const handleDelete = (event) => {}
+const handleDelete = (event) => { }
 
 
 
